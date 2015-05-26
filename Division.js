@@ -35,18 +35,26 @@ function Division (position) {
     this.locationID = '#' + this.y + this.x;
     this.$div = $('<div class="activeDiv" ID=' + this.locationID + '>' + this.value + '</div>');
 
-    /* methods */
-    this.doubleValue = function () {
-        this.value *= 2;
-        this.$div.text(this.value); // update jquery object
-        this.$div.attr('class',"activeDiv" + this.value);
-    };
 
-    this.moveToEmptyCell = function (y, x) {
+
+    /* methods */
+    this.moveToEmptyCell = function (y, x, subjectDiv, divMatrix, positionGenerator) {
         console.log("MoveToEmptyCell call.");
         /* here goes the fluffy stuff (animation) */
         var dx = (x - this.x) * (divWidth + tableBorder / 2);
         var dy = (y - this.y) * (divHeight + tableBorder / 2);
+
+        /* update game state */
+        positionGenerator.removeFreePosition(y * 4 + x);
+        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
+        /* update divMatrix */
+        divMatrix[y][x] = subjectDiv;
+        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
+        /* update subject */
+        subjectDiv.x = x;
+        subjectDiv.y = y;
+
+
         var obj = this;
 
         obj.$div.animate({left: "+=" + dx + "px", top: "+=" + dy + "px"}, 'fast',
@@ -63,7 +71,9 @@ function Division (position) {
         console.log("MoveToEmptyCell call resolved.");
     };
 
-    this.collideWith = function (destination) {
+
+
+    this.collideWith = function (destination, subjectDiv, divMatrix, positionGenerator) {
         console.log("Collision call between " + this.locationID + " and " + destination.locationID);
         /* here goes the fluffy stuff (animation) */
         var x = destination.x;
@@ -71,6 +81,18 @@ function Division (position) {
         var dx = (x - this.x) * (divWidth + tableBorder / 2);
         var dy = (y - this.y) * (divHeight + tableBorder / 2);
         var obj = this;
+
+
+        /* update game state */
+        //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
+        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
+        /* update divMatrix */
+        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
+        divMatrix[destination.y][destination.x] = subjectDiv;
+        /* update subject */
+        subjectDiv.x = destination.x;
+        subjectDiv.y = destination.y;
+
 
         obj.$div.animate({left: "+=" + dx + "px", top: "+=" + dy + "px"}, 'fast',
             function () {
@@ -84,7 +106,10 @@ function Division (position) {
                 $(obj.locationID).append(obj.$div);
 
                 /* actual value of the source doubles because of the merge */
-                obj.doubleValue();
+                obj.value *= 2;
+                obj.$div.text(obj.value); // update jquery object text
+                obj.$div.attr('class',"activeDiv" + obj.value); // update jquery object class
+
                 /* destination div disappears into the darkness */
                 destination.setVisible(false);
 

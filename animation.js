@@ -49,18 +49,9 @@ $(document).ready( function () {
 
                         if (targetDiv !== 0) {
                             if (targetDiv.value === subjectDiv.value) {
+                                subjectDiv.collideWith(targetDiv, subjectDiv, divMatrix, positionGenerator);
                                 thereIsAction = true;
-                                subjectDiv.collideWith(targetDiv);
-                                /* update game state */
                                 collided = true;
-                                //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
-                                positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                                /* update divMatrix */
-                                divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                                divMatrix[targetDiv.y][targetDiv.x] = subjectDiv;
-                                /* update subject */
-                                subjectDiv.x = targetDiv.x;
-                                subjectDiv.y = targetDiv.y;
                             } else {
                                 break;
                             }
@@ -70,16 +61,7 @@ $(document).ready( function () {
                     }
                     if (lastFreeY >= 0 && !collided) {
                         thereIsAction = true;
-                        subjectDiv.moveToEmptyCell(lastFreeY, column);
-                        /* update game state */
-                        positionGenerator.removeFreePosition(lastFreeY * 4 + column);
-                        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                            /* update divMatrix */
-                        divMatrix[lastFreeY][column] = subjectDiv;
-                        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                            /* update subject */
-                        subjectDiv.y = lastFreeY;
-                        subjectDiv.x = column;
+                        subjectDiv.moveToEmptyCell(lastFreeY, column, subjectDiv, divMatrix, positionGenerator);
                     }
                 }
             }
@@ -109,18 +91,9 @@ $(document).ready( function () {
 
                         if (targetDiv !== 0) {
                             if (targetDiv.value === subjectDiv.value) {
+                                subjectDiv.collideWith(targetDiv, subjectDiv, divMatrix, positionGenerator);
                                 thereIsAction = true;
-                                subjectDiv.collideWith(targetDiv);
-                                /* update game state */
                                 collided = true;
-                                //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
-                                positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                                /* update divMatrix */
-                                divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                                divMatrix[targetDiv.y][targetDiv.x] = subjectDiv;
-                                /* update subject */
-                                subjectDiv.x = targetDiv.x;
-                                subjectDiv.y = targetDiv.y;
                             } else {
                                 break;
                             }
@@ -130,16 +103,7 @@ $(document).ready( function () {
                     }
                     if (lastFreeX >= 0 && !collided) {
                         thereIsAction = true;
-                        subjectDiv.moveToEmptyCell(line, lastFreeX);
-                        /* update game state */
-                        positionGenerator.removeFreePosition(line * 4 + lastFreeX);
-                        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                        /* update divMatrix */
-                        divMatrix[line][lastFreeX] = subjectDiv;
-                        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                        /* update subject */
-                        subjectDiv.x = lastFreeX;
-                        subjectDiv.y = line;
+                        subjectDiv.moveToEmptyCell(line, lastFreeX, subjectDiv, divMatrix, positionGenerator);
                     }
                 }
             }
@@ -168,18 +132,9 @@ $(document).ready( function () {
 
                         if (targetDiv !== 0) {
                             if (targetDiv.value === subjectDiv.value) {
+                                subjectDiv.collideWith(targetDiv, subjectDiv, divMatrix, positionGenerator);
                                 thereIsAction = true;
-                                subjectDiv.collideWith(targetDiv);
-                                /* update game state */
                                 collided = true;
-                                //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
-                                positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                                /* update divMatrix */
-                                divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                                divMatrix[targetDiv.y][targetDiv.x] = subjectDiv;
-                                /* update subject */
-                                subjectDiv.x = targetDiv.x;
-                                subjectDiv.y = targetDiv.y;
                             } else {
                                 break;
                             }
@@ -189,16 +144,8 @@ $(document).ready( function () {
                     }
                     if (lastFreeX >= 0 && !collided) {
                         thereIsAction = true;
-                        subjectDiv.moveToEmptyCell(line, lastFreeX);
-                        /* update game state */
-                        positionGenerator.removeFreePosition(line * 4 + lastFreeX);
-                        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                        /* update divMatrix */
-                        divMatrix[line][lastFreeX] = subjectDiv;
-                        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                        /* update subject */
-                        subjectDiv.x = lastFreeX;
-                        subjectDiv.y = line;
+                        subjectDiv.moveToEmptyCell(line, lastFreeX, subjectDiv, divMatrix, positionGenerator);
+
                     }
                 }
             }
@@ -227,18 +174,9 @@ $(document).ready( function () {
 
                         if (targetDiv !== 0) {
                             if (targetDiv.value === subjectDiv.value) {
+                                subjectDiv.collideWith(targetDiv, subjectDiv, divMatrix, positionGenerator);
                                 thereIsAction = true;
-                                subjectDiv.collideWith(targetDiv);
-                                /* update game state */
                                 collided = true;
-                                //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
-                                positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                                /* update divMatrix */
-                                divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                                divMatrix[targetDiv.y][targetDiv.x] = subjectDiv;
-                                /* update subject */
-                                subjectDiv.x = targetDiv.x;
-                                subjectDiv.y = targetDiv.y;
                             } else {
                                 break;
                             }
@@ -248,16 +186,7 @@ $(document).ready( function () {
                     }
                     if (lastFreeY >= 0 && !collided) {
                         thereIsAction = true;
-                        subjectDiv.moveToEmptyCell(lastFreeY, column);
-                        /* update game state */
-                        positionGenerator.removeFreePosition(lastFreeY * 4 + column);
-                        positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
-                        /* update divMatrix */
-                        divMatrix[lastFreeY][column] = subjectDiv;
-                        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-                        /* update subject */
-                        subjectDiv.y = lastFreeY;
-                        subjectDiv.x = column;
+                        subjectDiv.moveToEmptyCell(lastFreeY, column, subjectDiv, divMatrix, positionGenerator);
                     }
                 }
             }
