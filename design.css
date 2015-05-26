@@ -34,38 +34,47 @@ table {
 
 .activeDiv8 {
     background-color: #13ba52;
+    border-radius: 12%;
 }
 
 .activeDiv16 {
     background-color: #c2ee13;
+    border-radius: 15%;
 }
 
 .activeDiv32 {
     background-color: #eed804;
+    border-radius: 20%;
 }
 
 .activeDiv64 {
     background-color: #ffa704;
+    border-radius: 30%;
 }
 
 .activeDiv128 {
     background-color: #ee2000;
+    border-radius: 40%;
 }
 
 .activeDiv256 {
     background-color: #ee057d;
+    border-radius: 50%;
 }
 
 .activeDiv512 {
     background-color: #e304f4;
+    border-radius: 70%;
 }
 
 .activeDiv1024 {
     background-color: #ad06df;
+    border-radius: 90%;
 }
 
 .activeDiv2048 {
     background-color: #0009ea;
+    border-radius: 100%;
 }
 
 .activeDiv2, .activeDiv4, .activeDiv8, .activeDiv16,
