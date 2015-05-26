@@ -87,8 +87,6 @@ $(document).ready( function () {
 
         if (thereIsAction)
             setTimeout(spawnNewDiv, 200);
-        else
-            spawnNewDiv();
     };
 
     var collideRight = function () {
@@ -148,8 +146,6 @@ $(document).ready( function () {
         }
         if (thereIsAction)
             setTimeout(spawnNewDiv, 200);
-        else
-            spawnNewDiv();
     };
 
     var collideLeft = function () {
@@ -209,8 +205,6 @@ $(document).ready( function () {
         }
         if (thereIsAction)
             setTimeout(spawnNewDiv, 200);
-        else
-            spawnNewDiv();
     };
 
     var collideDown = function () {
@@ -270,8 +264,6 @@ $(document).ready( function () {
         }
         if (thereIsAction)
             setTimeout(spawnNewDiv, 200);
-        else
-            spawnNewDiv();
     };
 
 
