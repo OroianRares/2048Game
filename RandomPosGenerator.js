@@ -10,6 +10,7 @@ function RandomPosGenerator() {
             return freePosition[pick];
         } else {
             console.log("No more free positions!");
+            return -1;
         }
     };
 
