@@ -6,7 +6,7 @@ table {
 
 .backgroundDiv, .activeDiv2, .activeDiv4, .activeDiv8, .activeDiv16,
 .activeDiv32, .activeDiv64, .activeDiv128, .activeDiv256, .activeDiv512,
-.activeDiv1024, .activeDiv2048{
+.activeDiv1024, .activeDiv2048, .gameOver{
     width: 150px;
     height: 150px;
     border-radius: 10%;
@@ -22,6 +22,14 @@ table {
 .container {
     width: 9.5em;
     height: 9.5em;
+}
+
+.gameOver {
+    border-radius: 0%;
+    background-color: white;
+    color: darkmagenta;
+    font-family: "Arial", "arial";
+    font-size: 100px;
 }
 
 .activeDiv2 {
