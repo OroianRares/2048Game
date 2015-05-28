@@ -38,7 +38,7 @@ function Division (position) {
 
 
     /* methods */
-    this.moveToEmptyCell = function (y, x, subjectDiv, divMatrix, positionGenerator) {
+    this.moveToEmptyCell = function (y, x, subjectDiv, gameState, positionGenerator) {
         console.log("MoveToEmptyCell call.");
         /* here goes the fluffy stuff (animation) */
         var dx = (x - this.x) * (divWidth + tableBorder / 2);
@@ -47,9 +47,10 @@ function Division (position) {
         /* update game state */
         positionGenerator.removeFreePosition(y * 4 + x);
         positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
+        gameState.setThereIsAction(true);
         /* update divMatrix */
-        divMatrix[y][x] = subjectDiv;
-        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
+        gameState.addDivToMatrixCoords(subjectDiv, x, y);
+        gameState.removeDivFromMatrixCoords(subjectDiv.x, subjectDiv.y);
         /* update subject */
         subjectDiv.x = x;
         subjectDiv.y = y;
@@ -73,7 +74,7 @@ function Division (position) {
 
 
 
-    this.collideWith = function (destination, subjectDiv, divMatrix, positionGenerator) {
+    this.collideWith = function (destination, subjectDiv, gameState, positionGenerator) {
         console.log("Collision call between " + this.locationID + " and " + destination.locationID);
         /* here goes the fluffy stuff (animation) */
         var x = destination.x;
@@ -84,11 +85,11 @@ function Division (position) {
 
 
         /* update game state */
-        //positionGenerator.removeFreePosition(targetDiv.y *4 + targetDiv.x);
         positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
+        gameState.setThereIsAction(true);
         /* update divMatrix */
-        divMatrix[subjectDiv.y][subjectDiv.x] = 0;
-        divMatrix[destination.y][destination.x] = subjectDiv;
+        gameState.removeDivFromMatrixCoords(subjectDiv.x, subjectDiv.y);
+        gameState.addDivToMatrixCoords(subjectDiv, destination.x, destination.y);
         /* update subject */
         subjectDiv.x = destination.x;
         subjectDiv.y = destination.y;
