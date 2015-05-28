@@ -8,8 +8,10 @@ function GameState () {
         if (x >= 0 && x < 4 && y >= 0 && y < 4) {
             divMatrix[y][x] = divisionObj;
             divCnt++;
+            return true;
         } else {
             console.log("Invalid coordinates. x=" + x + " y=" + y);
+            return false;
         }
     };
 
@@ -17,19 +19,40 @@ function GameState () {
         if (x >= 0 && x < 4 && y >= 0 && y < 4) {
             divMatrix[y][x] = 0;
             divCnt--;
+            return true;
         } else {
             console.log("Invalid coordinates. x=" + x + " y=" + y);
+            return false;
         }
     };
 
 
 
     this.setGameOver = function (boolValue) {
-        gameOver = boolValue;
+        if (typeof boolValue === "boolean")
+            gameOver = boolValue;
+        else
+            console.log("How fool do you think i am? " + boolValue + " is no boolean value!");
+
+        return typeof boolValue === "boolean";
     };
 
     this.setThereIsAction = function (boolValue) {
-        thereIsAction = boolValue;
+        if (typeof boolValue === "boolean")
+            thereIsAction = boolValue;
+        else
+            console.log("How fool do you think i am? " + boolValue + " is no boolean value!");
+
+        return typeof boolValue === "boolean";
+    };
+
+    this.setDivCnt = function (value) {
+        if (value >= 0)
+            divCnt = value;
+        else
+            console.log("Invalid setDivCnt value: " + value);
+
+        return value >= 0;
     };
 
 
