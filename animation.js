@@ -3,6 +3,7 @@ $(document).ready( function ()
     /* some initial variables*/
     var gameState = new GameState();
     var randomPosGenerator = new RandomPosGenerator();
+    var functionCallsQueue = [];
 
     var announceGameOver = function () {
         console.log("GAME OVER");
@@ -20,7 +21,6 @@ $(document).ready( function ()
         divMatrix[2][3].$div.text('R'); divMatrix[2][3].$div.attr('class', 'gameOver');
     };
 
-
     var spawnNewDiv = function () {
         var randPos = randomPosGenerator.generateRandomFreePosition();
         randomPosGenerator.removeFreePosition(randPos);
@@ -33,6 +33,14 @@ $(document).ready( function ()
             announceGameOver();
         }
     };
+
+    var executeEnqueuedFunction = function () {
+        var func = functionCallsQueue.shift();
+        if (func !== undefined && !gameState.getGameOver())
+            func();
+    };
+
+    window.setInterval(executeEnqueuedFunction, 250);
 
     var collideUp = function () {
         console.log("CollideUp was called.");
@@ -73,6 +81,8 @@ $(document).ready( function ()
             setTimeout(spawnNewDiv, 200);
         else if (gameState.getDivCnt() === 16)
             announceGameOver();
+
+        gameState.setThereIsAction(false);
     };
 
     var collideRight = function () {
@@ -113,6 +123,8 @@ $(document).ready( function ()
             setTimeout(spawnNewDiv, 200);
         else if (gameState.getDivCnt() === 16)
             announceGameOver();
+
+        gameState.setThereIsAction(false);
     };
 
     var collideLeft = function () {
@@ -153,6 +165,8 @@ $(document).ready( function ()
             setTimeout(spawnNewDiv, 200);
         else if (gameState.getDivCnt() === 16)
             announceGameOver();
+
+        gameState.setThereIsAction(false);
     };
 
     var collideDown = function () {
@@ -197,25 +211,26 @@ $(document).ready( function ()
 
 
 
-    /* MAGIC STARTS DOWN HERE */
+    /* KEY DETECTION */
     $(document).keypress(function (key) {
         if (!gameState.getGameOver()) {
             var ascii = key.keyCode;
 
             if (ascii === 87 || ascii === 119 || ascii === 38) {
                 /* 'W' or 'w' or 'up arrow' pressed */
-                collideUp();
+                functionCallsQueue.push(collideUp);
+
             } else if (ascii === 65 || ascii === 97 || ascii === 37) {
                 /* 'A' or 'a' or 'left arrow' pressed */
-                collideLeft();
+                functionCallsQueue.push(collideLeft);
             } else if (ascii === 83 || ascii === 115 || ascii === 40) {
                 /* 'S' or 's' or 'down arrow' pressed */
-                collideDown();
+                functionCallsQueue.push(collideDown);
             } else if (ascii === 68 || ascii === 100 || ascii === 39) {
                 /* 'D' or 'd' or 'right arrow' pressed */
-                collideRight();
+                functionCallsQueue.push(collideRight);
             }
-
+            console.log(gameState.getDivCnt());
             key.preventDefault();
         }
     });
