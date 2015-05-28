@@ -40,7 +40,7 @@ $(document).ready( function ()
             func();
     };
 
-    window.setInterval(executeEnqueuedFunction, 250);
+    window.setInterval(executeEnqueuedFunction, 230);
 
     var collideUp = function () {
         console.log("CollideUp was called.");

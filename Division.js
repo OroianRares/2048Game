@@ -36,7 +36,6 @@ function Division (position) {
     this.$div = $('<div class="activeDiv" ID=' + this.locationID + '>' + this.value + '</div>');
 
 
-
     /* methods */
     this.moveToEmptyCell = function (y, x, subjectDiv, gameState, positionGenerator) {
         console.log("MoveToEmptyCell call.");
@@ -95,7 +94,6 @@ function Division (position) {
         subjectDiv.x = destination.x;
         subjectDiv.y = destination.y;
 
-
         obj.$div.animate({left: "+=" + dx + "px", top: "+=" + dy + "px"}, 'fast',
             function () {
                 /* relocate HTML tag into DOM */
@@ -114,8 +112,6 @@ function Division (position) {
 
                 /* destination div disappears into the darkness */
                 destination.setVisible(false);
-
-                console.log("Collision resolved.");
             }
         );
     };
