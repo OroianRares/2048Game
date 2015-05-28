@@ -87,6 +87,7 @@ function Division (position) {
         /* update game state */
         positionGenerator.insertFreePosition(subjectDiv.y * 4 + subjectDiv.x);
         gameState.setThereIsAction(true);
+        gameState.setDivCnt(gameState.getDivCnt() - 1);
         /* update divMatrix */
         gameState.removeDivFromMatrixCoords(subjectDiv.x, subjectDiv.y);
         gameState.addDivToMatrixCoords(subjectDiv, destination.x, destination.y);
