@@ -19,6 +19,8 @@ $(document).ready( function ()
         divMatrix[2][1].$div.text('V'); divMatrix[2][1].$div.attr('class', 'gameOver');
         divMatrix[2][2].$div.text('E'); divMatrix[2][2].$div.attr('class', 'gameOver');
         divMatrix[2][3].$div.text('R'); divMatrix[2][3].$div.attr('class', 'gameOver');
+
+        comfirm("The game is over, your score is: " + gameState.getScore());
     };
 
     var spawnNewDiv = function () {
@@ -38,6 +40,7 @@ $(document).ready( function ()
         var func = functionCallsQueue.shift();
         if (func !== undefined && !gameState.getGameOver())
             func();
+            $('#ScoreValue').text("  " + gameState.getScore());
     };
 
     window.setInterval(executeEnqueuedFunction, 230);

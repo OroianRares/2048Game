@@ -110,6 +110,9 @@ function Division (position) {
                 obj.$div.text(obj.value); // update jquery object text
                 obj.$div.attr('class',"activeDiv" + obj.value); // update jquery object class
 
+                /* increases the player's score */
+                gameState.addToScore(obj.value);
+
                 /* destination div disappears into the darkness */
                 destination.setVisible(false);
             }

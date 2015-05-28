@@ -25,10 +25,9 @@ table {
 }
 
 .gameOver {
-    border-radius: 0%;
     background-color: white;
     color: darkmagenta;
-    font-family: "Arial", "arial";
+    font-family: Arial, arial, sans-serif;
     font-size: 100px;
 }
 
@@ -86,9 +85,24 @@ table {
 }
 
 .activeDiv2, .activeDiv4, .activeDiv8, .activeDiv16,
-.activeDiv32, .activeDiv64, .activeDiv128, .activeDiv256, .activeDiv512
+.activeDiv32, .activeDiv64, .activeDiv128, .activeDiv256, .activeDiv512,
 .activeDiv1024, .activeDiv2048 {
     z-index: 1;
+}
+
+#tableHeadData, #ScoreValue {
+    height: 30px;
+    background-color: #c2ee13;
+    border-bottom: 10px solid #474C4D;
+    color: #0005ee;
+    text-align: center;
+    font-size: 22px;
+    font-family: fantasy;
+}
+
+#ScoreValue {
+    color: red;
+    border: none;
 }
 
 h1 {

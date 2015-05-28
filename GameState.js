@@ -3,6 +3,11 @@ function GameState () {
     var divCnt = 0;
     var gameOver = false;
     var thereIsAction = false;
+    var score = 0;
+
+    this.addToScore = function (valueToAdd) {
+        score += valueToAdd;
+    };
 
     this.addDivToMatrixCoords = function (divisionObj, x, y) {
         if (x >= 0 && x < 4 && y >= 0 && y < 4) {
@@ -80,5 +85,9 @@ function GameState () {
 
     this.getDivCnt = function () {
         return divCnt;
-    }
+    };
+
+    this.getScore = function () {
+        return score;
+    };
 }
